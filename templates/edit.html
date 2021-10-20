@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+      
+<h5>Edit {{data['nama']}}</h5>
+
+ <form action="{{ url_for('edit',id=data['id']) }}" method="post">
+        <br>
+        <br>
+        <label for="username">Nama</label>
+        <input type="text" name="nama" placeholder="nama">
+        <br>
+        <br>
+         <label> Kelamin</label>
+        <select name="kelamin">
+          <option value="Laki-laki">Laki-laki</option>
+          <option value="Perempuan">Perempuan</option>
+        </select>
+        <br>
+        <br>
+
+        <label> Orang tua</label>
+        <select name="orangTua" >
+        {%for i in keluarga%}
+        <option value="{{i['id']}}">{{i['nama']}}-{{i['kelamin']}}</option>
+        {%endfor%}
+        </select>
+
+       <button type="submit">Input</button>
+   </form>
+</body>
+</html>

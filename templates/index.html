@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+      
+
+    <table>
+  <tr>
+    <th>Nama</th>
+    <th>Kelamin</th>
+    <th>Orangtua</th>
+  </tr>
+  {%for i in data%}
+  <tr>
+    <td>{{i['nama']}}</td>
+    <td>{{i['kelamin']}}</td>
+    <td>{{i['anakdari']}}</td>
+    <td><a href="{{url_for('edit',id=i['id'])}}">edit</a>/<a href="{{url_for('delete',id=i['id'])}}">delete</a></td>
+  </tr>
+  {%endfor%}  
+</table>
+<br>
+
+<span style="font-family: 'Lucida Console'">{{strTree|safe}}</span>
+
+ <form action="{{url_for('crud')}}" method="post">
+        <br>
+        <br>
+        <label for="username">Nama</label>
+        <input type="text" name="nama" placeholder="nama">
+        <br>
+        <br>
+         <label> Kelamin</label>
+        <select name="kelamin">
+          <option value="Laki-laki">Laki-laki</option>
+          <option value="Perempuan">Perempuan</option>
+        </select>
+        <br>
+        <br>
+
+        <label> Orang tua</label>
+        <select name="orangTua" >
+        {%for i in data%}
+        <option value="{{i['id']}}">{{i['nama']}}-{{i['kelamin']}}</option>
+        {%endfor%}
+        </select>
+
+       <button type="submit">Input</button>
+   </form>
+</body>
+</html>
